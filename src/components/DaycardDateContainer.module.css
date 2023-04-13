@@ -1,0 +1,32 @@
+.day,
+.month {
+  position: relative;
+  font-weight: 500;
+}
+.day {
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+}
+.month {
+  font-size: var(--h5-size);
+  line-height: 20px;
+  text-align: left;
+}
+.daycardDateContainer {
+  background-color: var(--primary);
+  width: 69px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-base);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--h4-size);
+  color: var(--white);
+  font-family: var(--body-medium);
+}

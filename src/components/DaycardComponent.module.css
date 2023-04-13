@@ -1,0 +1,17 @@
+.daycard {
+  position: absolute;
+  top: 18px;
+  left: 9px;
+  border-radius: var(--br-5xs);
+  background-color: var(--white);
+  width: 342px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: center;
+  font-size: var(--h4-size);
+  color: var(--white);
+  font-family: var(--body-medium);
+}
