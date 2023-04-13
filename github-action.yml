@@ -1,0 +1,67 @@
+# Specify a Docker image with npm run installed.
+image: node:16
+
+pipelines:
+  # pull-requests:
+  #   # This runs as default for any branch not elsewhere defined
+  #   "**":
+  #     - step:
+  #         name: "Execute tests"
+  #         script:
+  #           - npm run install
+  #           - npm run test --runInBand
+
+  branches:
+    ## This runs after making a commit on master (includes PR merges).
+    master:
+      - step:
+          name: "Check that the `package.json` version is different from the last tagged version on the commit."
+          script:
+            - chmod +x .ci/versions-match.bash
+            - VERSIONS_MATCH=`.ci/versions-match.bash`
+            - if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
+      # - step:
+      #     name: "Execute tests"
+      #     script:
+      #       - npm run install
+      #       - npm run test --runInBand
+      - step:
+          name: "Tag new version"
+          script:
+            - |-
+              export NEW_VERSION=$(sed 's/.*"version": "\(.*\)".*/\1/;t;d' ./package.json)
+            - git tag ${NEW_VERSION}
+            - git push --tags
+          condition:
+            changesets:
+              includePaths:
+                # any changes in package.json or deeply nested directories under src
+                - "src/**"
+                - "package.json"
+      - step:
+          name: "Publish new version to the react-components GCloud repository"
+          script:
+            - npm run install
+            - .ci/refresh_auth_token.bash
+            - npm run build
+            - npm publish
+          condition:
+            changesets:
+              includePaths:
+                # any changes in package.json or deeply nested directories under src
+                - "src/**"
+                - "package.json"
+      - step:
+          name: "Publish stories on Chromatic"
+          script:
+            - npm run install
+            # --exit-zero-on-changes is necessary in order to not failing if test snapshots render without errors but with changes.
+            # More info here https://www.chromatic.com/docs/bitbucket-pipelines#command-exit-code-for-required-checks
+            # This may change in the future and this flag could be non necessary.
+            - npm run chromatic --exit-zero-on-changes
+          condition:
+            changesets:
+              includePaths:
+                # any changes in package.json or deeply nested directories under src
+                - "src/**"
+                - "package.json"
