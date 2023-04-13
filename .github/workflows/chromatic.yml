@@ -14,6 +14,11 @@ jobs:
     # Job steps
     steps:
       - uses: actions/checkout@v1
+      - name: "Check that the `package.json` version is different from the last tagged version on the commit."
+          script:
+            - chmod +x .ci/versions-match.bash
+            - VERSIONS_MATCH=`.ci/versions-match.bash`
+            - if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
       - name: Install dependencies
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
         run: npm i
