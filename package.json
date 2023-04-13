@@ -24,7 +24,8 @@
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "chromatic": "npx chromatic --project-token=e03c73f9a1eb"
   },
   "eslintConfig": {
     "root": true
@@ -56,5 +57,7 @@
     "chromatic": "^6.17.3",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.3"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "javitest@0.1.0"
 }

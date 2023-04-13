@@ -1,11 +1,11 @@
 @storybook/cli v7.0.3
 
-info => Cleaning outputDir: C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--31488-gIQFxqa6ylGT
+info => Cleaning outputDir: C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--34068-WTDD52N0aOCd
 info => Loading presets
 info => Building manager..
 info => Manager built (143 ms)
 info => Compiling preview..
-info => Copying static files: C:\Users\JavierBlanco\Downloads\JaviTest\node_modules\@storybook\manager\static at C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--31488-gIQFxqa6ylGT\sb-common-assets
+info => Copying static files: C:\Users\JavierBlanco\Downloads\JaviTest\node_modules\@storybook\manager\static at C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--34068-WTDD52N0aOCd\sb-common-assets
 info Addon-docs: using MDX2
 info => Using implicit CSS loaders
 WARN Storybook support for Create React App is now a separate preset.
@@ -112,17 +112,16 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 10% building import loader ./node_modules/@storybook/builder-webpack5/node_modules/babel-loader/lib/index.js
 <s> [webpack.Progress] 10% building 0/1 entries 1/1 dependencies 0/1 modules
 <s> [webpack.Progress] 10% building 0/1 entries 1/2 dependencies 0/1 modules
-info => Copying static files: C:\Users\JavierBlanco\Downloads\JaviTest\public at C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--31488-gIQFxqa6ylGT\
+info => Copying static files: C:\Users\JavierBlanco\Downloads\JaviTest\public at C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--34068-WTDD52N0aOCd\
 <s> [webpack.Progress] 25% building import loader ./node_modules/style-loader/dist/cjs.js
 <s> [webpack.Progress] 25% building import loader ./node_modules/css-loader/dist/cjs.js
 <s> [webpack.Progress] 25% building 0/1 entries 35/67 dependencies 8/28 modules
 <s> [webpack.Progress] 24% building import loader ./node_modules/@storybook/mdx2-csf/loader.js
-<s> [webpack.Progress] 24% building 0/1 entries 45/78 dependencies 10/37 modules
+<s> [webpack.Progress] 24% building 0/1 entries 37/78 dependencies 8/30 modules
 <s> [webpack.Progress] 19% building import loader ./node_modules/unplugin/dist/webpack/loaders/transform.js
-<s> [webpack.Progress] 19% building 0/1 entries 80/109 dependencies 10/60 modules
-<s> [webpack.Progress] 47% building 0/1 entries 276/300 dependencies 98/143 modules
-<s> [webpack.Progress] 32% building 0/1 entries 560/700 dependencies 119/291 modules
-<s> [webpack.Progress] 55% building 0/1 entries 1074/1100 dependencies 371/445 modules
+<s> [webpack.Progress] 19% building 0/1 entries 79/109 dependencies 10/60 modules
+<s> [webpack.Progress] 39% building 0/1 entries 365/400 dependencies 105/199 modules
+<s> [webpack.Progress] 41% building 0/1 entries 759/800 dependencies 191/331 modules
 <s> [webpack.Progress] 65% building 1/1 entries 1491/1491 dependencies 672/672 modules
 <s> [webpack.Progress] 65% building
 <s> [webpack.Progress] 69% building finish
@@ -333,7 +332,7 @@ info => Copying static files: C:\Users\JavierBlanco\Downloads\JaviTest\public at
 <s> [webpack.Progress] 99% cache begin idle
 <s> [webpack.Progress] 100% 
 
-info => Preview built (17 s)
+info => Preview built (14 s)
 WARN Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
 WARN Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
 WARN Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
@@ -356,4 +355,4 @@ WARN
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 100% 
 
-info => Output directory: C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--31488-gIQFxqa6ylGT
+info => Output directory: C:\Users\JAVIER~1\AppData\Local\Temp\chromatic--34068-WTDD52N0aOCd
