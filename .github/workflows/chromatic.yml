@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: Check package.json version
         run: |
-          chmod +x versions-match.bash
-          VERSIONS_MATCH=`versions-match.bash`
+          chmod +x .ci/versions-match.bash
+          VERSIONS_MATCH=`.ci/versions-match.bash`
           if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
       - uses: actions/checkout@v1
       - name: Install dependencies
