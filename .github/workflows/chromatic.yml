@@ -1,28 +1,54 @@
-# .github/workflows/chromatic.yml
-# Workflow name
-name: "Chromatic"
-# Event for the workflow
-on: push
-# List of jobs
+name: CI
+
+# on:
+#   pull_request:
+#   push:
+#     branches:
+#       - master
+
 jobs:
-  chromatic-deployment:
-    # Operating System
+  build:
     runs-on: ubuntu-latest
-    # Job steps
     steps:
-      - name: Check package.json version
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm install
+
+      # - name: Execute tests
+      #   run: npm run test --runInBand
+
+      - name: Check that the `package.json` version is different from the last tagged version on the commit.
         run: |
           chmod +x .ci/versions-match.bash
           VERSIONS_MATCH=`.ci/versions-match.bash`
           if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
-      - uses: actions/checkout@v1
-      - name: Install dependencies
-        # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
-        run: npm i
-        # 👇 Adds Chromatic as a step in the workflow
-      - name: Publish to Chromatic
-        uses: chromaui/action@v1
-        # Chromatic GitHub Action options
-        with:
-          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+        if: github.ref == 'refs/heads/master'
+
+      - name: Tag new version
+        run: |
+          export NEW_VERSION=$(sed 's/.*"version": "\(.*\)".*/\1/;t;d' ./package.json)
+          git tag ${NEW_VERSION}
+          git push --tags
+        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.modified, 'package.json')
+
+      - name: Publish new version to the react-components GCloud repository
+        run: |
+          .ci/refresh_auth_token.bash
+          npm run build
+          npm publish
+        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.modified, 'package.json')
+
+      - name: Publish stories on Chromatic
+        run: |
+          # --exit-zero-on-changes is necessary in order to not failing if test snapshots render without errors but with changes.
+          # More info here https://www.chromatic.com/docs/bitbucket-pipelines#command-exit-code-for-required-checks
+          # This may change in the future and this flag could be non necessary.
+          npm run chromatic --exit-zero-on-changes
+        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.modified, 'package.json')

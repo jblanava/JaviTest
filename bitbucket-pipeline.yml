@@ -1,15 +1,15 @@
 # Specify a Docker image with npm run installed.
 image: node:16
 
-# pipelines:
-#   pull-requests:
-#     # This runs as default for any branch not elsewhere defined
-#     "**":
-#       - step:
-#           name: "Execute tests"
-#           script:
-#             - npm run install
-#             - npm run test --runInBand
+pipelines:
+  pull-requests:
+    # This runs as default for any branch not elsewhere defined
+    "**":
+      - step:
+          name: "Execute tests"
+          script:
+            - npm run install
+            - npm run test --runInBand
 
   branches:
     ## This runs after making a commit on master (includes PR merges).
@@ -20,11 +20,11 @@ image: node:16
             - chmod +x .ci/versions-match.bash
             - VERSIONS_MATCH=`.ci/versions-match.bash`
             - if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
-      # - step:
-      #     name: "Execute tests"
-      #     script:
-      #       - npm run install
-      #       - npm run test --runInBand
+      - step:
+          name: "Execute tests"
+          script:
+            - npm run install
+            - npm run test --runInBand
       - step:
           name: "Tag new version"
           script:
