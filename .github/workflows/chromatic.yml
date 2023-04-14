@@ -30,6 +30,7 @@ jobs:
         run: |
           chmod +x .ci/versions-match.bash
           VERSIONS_MATCH=`.ci/versions-match.bash`
+          echo $VERSIONS_MATCH
           if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
         if: github.ref == 'refs/heads/master'
 
