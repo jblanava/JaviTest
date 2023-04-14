@@ -13,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
-      
       - name: "Check that the `package.json` version is different from the last tagged version on the commit."
           script:
             - chmod +x .ci/versions-match.bash
