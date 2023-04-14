@@ -34,12 +34,11 @@ jobs:
       #     if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
       #   if: github.ref == 'refs/heads/master'
 
-      # - name: Tag new version
-      #   run: |
-      #     export NEW_VERSION=$(sed 's/.*"version": "\(.*\)".*/\1/;t;d' ./package.json)
-      #     git tag ${NEW_VERSION}
-      #     git push --tags
-      #   if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.modified, 'package.json')
+      - name: Tag new version
+        run: |
+          export NEW_VERSION=$(sed 's/.*"version": "\(.*\)".*/\1/;t;d' ./package.json)
+          git tag ${NEW_VERSION}
+          git push --tags
 
       # - name: Publish new version to the react-components GCloud repository
       #   run: |
@@ -54,4 +53,3 @@ jobs:
           # More info here https://www.chromatic.com/docs/bitbucket-pipelines#command-exit-code-for-required-checks
           # This may change in the future and this flag could be non necessary.
           npm run chromatic --exit-zero-on-changes
-        if: github.ref == 'refs/heads/master' && contains(github.event.head_commit.modified, 'package.json')
