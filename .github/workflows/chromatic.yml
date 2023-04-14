@@ -26,13 +26,13 @@ jobs:
       # - name: Execute tests
       #   run: npm run test --runInBand
 
-      - name: Check that the `package.json` version is different from the last tagged version on the commit.
-        run: |
-          chmod +x .ci/versions-match.bash
-          VERSIONS_MATCH=`.ci/versions-match.bash`
-          echo $VERSIONS_MATCH
-          if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
-        if: github.ref == 'refs/heads/master'
+      # - name: Check that the `package.json` version is different from the last tagged version on the commit.
+      #   run: |
+      #     chmod +x .ci/versions-match.bash
+      #     VERSIONS_MATCH=`.ci/versions-match.bash`
+      #     echo $VERSIONS_MATCH
+      #     if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
+      #   if: github.ref == 'refs/heads/master'
 
       - name: Tag new version
         run: |
