@@ -16,7 +16,7 @@
   text-align: left;
 }
 .daycardDateContainer {
-  background-color: var(--secondary);
+  background-color: var(--primary);
   width: 69px;
   flex-shrink: 0;
   display: flex;
