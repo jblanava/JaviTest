@@ -12,7 +12,7 @@ const DaycardComponent: FunctionComponent = () => {
         shiftTypeIcon="/shift-type-icon.svg"
         shiftTypeName="Afternoon"
         shiftFrom="9:00"
-        shiftTo="14:00"
+        shiftTo="14:00 "
       />
     </div>
   );
