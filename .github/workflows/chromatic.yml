@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
+      - name: Check package.json version
+        run: |
+          chmod +x .ci/versions-match.bash
+          VERSIONS_MATCH=`.ci/versions-match.bash`
+          if [ $VERSIONS_MATCH == "true" ]; then exit 135; fi
       - uses: actions/checkout@v1
       - name: Install dependencies
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
